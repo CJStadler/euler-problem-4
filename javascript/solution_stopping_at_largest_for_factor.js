@@ -1,4 +1,4 @@
-function solution_largest_with_factor(n) {
+function solution_stopping_at_largest_for_factor(n) {
   var largest = largest_with_digits(n);
   var smallest = smallest_with_digits(n);
   var palindromes = [];
@@ -9,16 +9,17 @@ function solution_largest_with_factor(n) {
   while (first_factor >= smallest) {
     var second_factor = first_factor;
 
-    while (second_factor >= smallest) {
-      var product = first_factor * second_factor;
+    var product = first_factor * second_factor;
+
+    while (second_factor >= smallest && !is_palindrome(product)) {
+      product = first_factor * second_factor;
       multiplications += 1;
-
-      if (is_palindrome(product)) {
-        palindromes.push(product);
-        break;
-      }
-
       second_factor -= 1;
+    }
+
+    if (is_palindrome(product)) {
+      // console.log(first_factor + "x" + second_factor + "=" + product);
+      palindromes.push(product);
     }
 
     first_factor -= 1;
