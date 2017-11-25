@@ -1,5 +1,5 @@
-function graph_algorithm(n, algorithm_function, container_id) {
-  var svg = init_graph(container_id, n);
+function graph_algorithm(n, algorithm_function, container_selector) {
+  var svg = init_graph(container_selector, n);
 
   var multiplications = [];
 
@@ -12,15 +12,15 @@ function graph_algorithm(n, algorithm_function, container_id) {
     return product;
   };
 
-  algorithm_function(n, multiply_and_graph);
+  return algorithm_function(n, multiply_and_graph);
 }
 
-function init_graph(container, n) {
+function init_graph(container_selector, n) {
   var margin = {top: 20, right: 20, bottom: 20, left: 35},
-    width = container.width() - margin.left - margin.right,
+    width = 500 - margin.left - margin.right,
     height = 340 - margin.top - margin.bottom;
 
-  var svg = container.append("svg")
+  var svg = d3.select(container_selector).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom);
 
@@ -28,9 +28,15 @@ function init_graph(container, n) {
 }
 
 function graph(svg, multiplications) {
-  var products = svg.selectAll('.product').data(multiplications)
+  console.log(multiplications.length);
+  var products = svg.selectAll('.product').data(multiplications);
 
   // Update
 
   // Enter
+  products.enter().append("text")
+    .classed('product', true)
+    .text(function(d) { return `${d[0]}*${d[1]}=${d[0]*d[1]}`; })
+    .attr('dx', 100)
+    .attr('dy', function(d, i) { return i*50; });
 }
