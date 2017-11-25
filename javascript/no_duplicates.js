@@ -24,5 +24,5 @@ function no_duplicates(n) {
   }
 
   console.log(multiplications);
-  return palindromes.sort(function(a, b) { return a-b }).reverse()[0];
+  return palindromes.sort(function(a, b) { return a-b; }).reverse()[0];
 }

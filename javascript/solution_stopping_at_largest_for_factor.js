@@ -26,5 +26,5 @@ function solution_stopping_at_largest_for_factor(n) {
   }
 
   console.log(multiplications);
-  return palindromes.sort(function(a, b) { return a-b }).reverse()[0];
+  return palindromes.sort(function(a, b) { return a-b; }).reverse()[0];
 }
