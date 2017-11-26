@@ -23,6 +23,5 @@ function no_duplicates(n) {
     first_factor -= 1;
   }
 
-  console.log(multiplications);
   return palindromes.sort(function(a, b) { return a-b; }).reverse()[0];
 }

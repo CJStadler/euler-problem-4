@@ -1,4 +1,4 @@
-function best_solution(n, multiply) {
+async function best_solution(n, multiply) {
   var largest_palindrome = 0;
   var multiplications = 0;
 
@@ -10,7 +10,7 @@ function best_solution(n, multiply) {
     var smaller_factor = larger_factor;
 
     do {
-      product = multiply(larger_factor, smaller_factor);
+      product = await multiply(larger_factor, smaller_factor);
 
       if (is_palindrome(product) && product > largest_palindrome) {
         largest_palindrome = product;
